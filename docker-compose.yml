@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  # db:
+  #   image: postgres:10.5
+  #   restart: always
+  #   environment:
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=postgres
+  #     - POSTGRES_DB=snub_db
+  #   logging:
+  #     options:
+  #       max-size: 10m
+  #       max-file: "3"
+  #   ports:
+  #     - '5438:5432'
+  #   tmpfs: /var/lib/postgresql/data
+
+  snub:
+    image: snub:$TAG
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # links:
+    #   - "db:database"
+    ports:
+      - '8080:8080'
+    restart: "no"
