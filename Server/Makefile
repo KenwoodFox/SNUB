@@ -9,7 +9,8 @@ help:
 
 # For local development
 dev: build
-	docker-compose -f docker-compose.yml build && docker-compose -f docker-compose.yml up
+	# docker-compose -f docker-compose.yml build && docker-compose -f docker-compose.yml up
+	docker-compose -f docker-compose.yml up
 
 # Build container locally
 build:
