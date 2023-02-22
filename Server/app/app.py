@@ -1,8 +1,9 @@
 # CS-114
 
 # External libs
+import os
+
 from flask import Flask, render_template, jsonify
-import socket
 
 
 # Our own
@@ -19,10 +20,9 @@ def index():
         return render_template("error.html")
 
 
-@app.route("/test/json")
-def test_json():
-    list = [{"a": 1, "b": 2}, {"a": 5, "b": 10}]
-    return jsonify(results=list)
+@app.route("/cmds/version", methods=["GET"])
+def version():
+    return jsonify(version=os.getenv("GIT_COMMIT"))
 
 
 if __name__ == "__main__":
