@@ -1,4 +1,7 @@
+# Docs
+~$*.docx
+*.pdf
 
-Resources/~$EP1_ProjectProposal.docx
-Client/SNUBclientFinalProject/.vs
-Client/SNUBclientFinalProject/obj
+# C#
+.vs/
+obj/
