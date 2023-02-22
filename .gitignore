@@ -1,0 +1,7 @@
+# Docs
+~$*.docx
+*.pdf
+
+# C#
+.vs/
+obj/
