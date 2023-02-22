@@ -35,14 +35,6 @@ jobs:
         if: steps.action_black.outputs.is_formatted == 'true'
         run: exit 1
 
-      # - name: Discord notification
-      #   if: ${{ failure() }}
-      #   env:
-      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-      #   uses: Ilshidur/action-discord@master
-      #   with:
-      #     args: "Black formatter reported errors in {{ EVENT_PAYLOAD.pull_request.html_url }} !"
-
   build-and-publish-image:
     name: Build and Publish Registry Image
     runs-on: ubuntu-latest
@@ -89,17 +81,10 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: Server/
           push: true
           build-args: |
             GIT_COMMIT=${{ env.BUILD_HASH }}
             DEBUG=False
           tags: ${{ env.CUSTOM_TAG }}
           labels: ${{ steps.meta.outputs.labels }}
-
-      # - name: Discord notification
-      #   env:
-      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-      #   uses: Ilshidur/action-discord@master
-      #   with:
-      #     args: "Built and published a new Adman Bot docker image to `${{ env.CUSTOM_TAG }}`!"
