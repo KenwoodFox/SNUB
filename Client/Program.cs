@@ -22,18 +22,5 @@ namespace SNUBclientFinalProject
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
         }
-
-        static string getVersion()
-        {
-            string url = "https://snub.kitsunehosting.net/cmds/version";
-
-            string json;
-            using (WebClient wc = new WebClient())
-            {
-                json = wc.DownloadString(url);
-            }
-
-            return "";
-        }
     }
 }
