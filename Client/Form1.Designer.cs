@@ -28,47 +28,56 @@
         /// </summary>
         private void InitializeComponent()
         {
-            connLabel = new Label();
-            connectButton = new Button();
-            SuspendLayout();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStipConLabel = new System.Windows.Forms.ToolStripTextBox();
+            this.menuStrip1.SuspendLayout();
+            this.SuspendLayout();
             // 
-            // connLabel
+            // menuStrip1
             // 
-            connLabel.AutoSize = true;
-            connLabel.Location = new Point(12, 38);
-            connLabel.Name = "connLabel";
-            connLabel.Size = new Size(88, 15);
-            connLabel.TabIndex = 0;
-            connLabel.Text = "No Connection";
-            connLabel.Click += label1_Click;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.connectToolStripMenuItem,
+            this.toolStipConLabel});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 27);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // connectButton
+            // connectToolStripMenuItem
             // 
-            connectButton.Location = new Point(12, 12);
-            connectButton.Name = "connectButton";
-            connectButton.Size = new Size(75, 23);
-            connectButton.TabIndex = 1;
-            connectButton.Text = "Connect";
-            connectButton.UseVisualStyleBackColor = true;
-            connectButton.Click += connectButton_Click;
+            this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(64, 23);
+            this.connectToolStripMenuItem.Text = "Connect";
+            this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
+            // 
+            // toolStipConLabel
+            // 
+            this.toolStipConLabel.Name = "toolStipConLabel";
+            this.toolStipConLabel.ReadOnly = true;
+            this.toolStipConLabel.Size = new System.Drawing.Size(100, 23);
+            this.toolStipConLabel.Text = "No Connection";
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(connectButton);
-            Controls.Add(connLabel);
-            Name = "Form1";
-            Text = "Form1";
-            Load += Form1_Load;
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
+            this.Name = "Form1";
+            this.Text = "Form1";
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
-
-        private Label connLabel;
-        private Button connectButton;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem connectToolStripMenuItem;
+        private ToolStripTextBox toolStipConLabel;
     }
 }

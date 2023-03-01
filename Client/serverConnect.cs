@@ -1,27 +1,15 @@
-using System.Net;
+﻿using System;
 using System.Collections.Generic;
-
-using Newtonsoft.Json;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
 namespace SNUBclientFinalProject
 {
-    public partial class Form1 : Form
+    internal class serverConnect
     {
-        public Form1()
-        {
-            InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-       
-
-       
-
         static string getValue(string path, string key)
         {
             // Method to retreive any specific json key from the server
@@ -36,13 +24,6 @@ namespace SNUBclientFinalProject
             JObject arr = JObject.Parse(json);
 
             return (string)arr[key];
-        }
-
-        
-
-        private void connectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            toolStipConLabel.Text = $"Connected to server version {getValue("/cmds/version", "version")}";
         }
     }
 }
