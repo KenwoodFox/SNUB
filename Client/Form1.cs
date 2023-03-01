@@ -13,27 +13,13 @@ namespace SNUBclientFinalProject
             InitializeComponent();
         }
 
-        static string getValue(string path, string key)
-        {
-            // Method to retreive any specific json key from the server
-            string url = $"https://snub.kitsunehosting.net{path}";
-
-            string json;
-            using (WebClient wc = new WebClient())
-            {
-                json = wc.DownloadString(url);
-            }
-
-            JObject arr = JObject.Parse(json);
-
-            return (string)arr[key];
-        }
+        
 
         
 
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            toolStipConLabel.Text = $"Connected to server version {getValue("/cmds/version", "version")}";
+            toolStipConLabel.Text = $"Connected to server version {serverConnect.getValue("/cmds/version", "version")}";
         }
     }
 }

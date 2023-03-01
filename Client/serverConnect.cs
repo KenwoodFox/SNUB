@@ -10,7 +10,7 @@ namespace SNUBclientFinalProject
 {
     internal class serverConnect
     {
-        static string getValue(string path, string key)
+        public static string getValue(string path, string key)
         {
             // Method to retreive any specific json key from the server
             string url = $"https://snub.kitsunehosting.net{path}";
