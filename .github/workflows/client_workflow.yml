@@ -33,3 +33,27 @@ jobs:
         with:
           name: ClientApp
           path: Client/bin/*.exe
+
+  publish:
+    # Only run on tags
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    name: Publish
+    needs: [build]
+
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: ClientApp
+          path: .
+
+      - name: Upload Executable to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: "*.exe"
+          tag: ${{ github.ref }}
+          overwrite: true
+          prerelease: true
+          body: "CS-114, Automated with github ci/cd."
+          file_glob: true
