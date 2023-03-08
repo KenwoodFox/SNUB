@@ -31,6 +31,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStipConLabel = new System.Windows.Forms.ToolStripTextBox();
+            this.classToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.classListComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -38,7 +40,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.connectToolStripMenuItem,
-            this.toolStipConLabel});
+            this.toolStipConLabel,
+            this.classToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 27);
@@ -58,6 +61,20 @@
             this.toolStipConLabel.ReadOnly = true;
             this.toolStipConLabel.Size = new System.Drawing.Size(100, 23);
             this.toolStipConLabel.Text = "No Connection";
+            // 
+            // classToolStripMenuItem
+            // 
+            this.classToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.classListComboBox});
+            this.classToolStripMenuItem.Name = "classToolStripMenuItem";
+            this.classToolStripMenuItem.Size = new System.Drawing.Size(46, 23);
+            this.classToolStripMenuItem.Text = "Class";
+            this.classToolStripMenuItem.Click += new System.EventHandler(this.classToolStripMenuItem_Click);
+            // 
+            // classListComboBox
+            // 
+            this.classListComboBox.Name = "classListComboBox";
+            this.classListComboBox.Size = new System.Drawing.Size(121, 23);
             // 
             // Form1
             // 
@@ -79,5 +96,7 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem connectToolStripMenuItem;
         private ToolStripTextBox toolStipConLabel;
+        private ToolStripMenuItem classToolStripMenuItem;
+        private ToolStripComboBox classListComboBox;
     }
 }
