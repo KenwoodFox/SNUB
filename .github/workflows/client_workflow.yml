@@ -21,10 +21,15 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: Install dependencies
-        run: dotnet restore
+        run: cd Client && dotnet restore
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: cd Client && dotnet build --configuration Release --no-restore
 
       - name: Test
-        run: dotnet test --no-restore --verbosity normal
+        run: cd Client && dotnet test --no-restore --verbosity normal
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ClientApp
+          path: Client/**.exe
