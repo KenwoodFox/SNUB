@@ -1,4 +1,4 @@
-name: SNUB CI/CD
+name: Server CI/CD
 
 on:
   push:

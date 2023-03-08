@@ -1,4 +1,5 @@
-[![SNUB CI/CD](https://github.com/KenwoodFox/SNUB/actions/workflows/snub_workflow.yml/badge.svg)](https://github.com/KenwoodFox/SNUB/actions/workflows/snub_workflow.yml)
+[![Server CI/CD](https://github.com/KenwoodFox/SNUB/actions/workflows/server_workflow.yml/badge.svg)](https://github.com/KenwoodFox/SNUB/actions/workflows/server_workflow.yml)
+[![Client CI/CD](https://github.com/KenwoodFox/SNUB/actions/workflows/client_workflow.yml/badge.svg)](https://github.com/KenwoodFox/SNUB/actions/workflows/client_workflow.yml)
 
 # SNUB
 SNhU dataBase. A CS-114 project for SNHU.
