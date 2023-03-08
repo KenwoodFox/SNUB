@@ -30,9 +30,10 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStipConLabel = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripConLabel = new System.Windows.Forms.ToolStripTextBox();
             this.classToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.classListComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,7 +41,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.connectToolStripMenuItem,
-            this.toolStipConLabel,
+            this.toolStripConLabel,
             this.classToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -55,12 +56,12 @@
             this.connectToolStripMenuItem.Text = "Connect";
             this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
             // 
-            // toolStipConLabel
+            // toolStripConLabel
             // 
-            this.toolStipConLabel.Name = "toolStipConLabel";
-            this.toolStipConLabel.ReadOnly = true;
-            this.toolStipConLabel.Size = new System.Drawing.Size(100, 23);
-            this.toolStipConLabel.Text = "No Connection";
+            this.toolStripConLabel.Name = "toolStripConLabel";
+            this.toolStripConLabel.ReadOnly = true;
+            this.toolStripConLabel.Size = new System.Drawing.Size(100, 23);
+            this.toolStripConLabel.Text = "No Connection";
             // 
             // classToolStripMenuItem
             // 
@@ -76,11 +77,21 @@
             this.classListComboBox.Name = "classListComboBox";
             this.classListComboBox.Size = new System.Drawing.Size(121, 23);
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 15;
+            this.listBox1.Location = new System.Drawing.Point(370, 149);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 94);
+            this.listBox1.TabIndex = 3;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
@@ -95,8 +106,9 @@
         #endregion
         private MenuStrip menuStrip1;
         private ToolStripMenuItem connectToolStripMenuItem;
-        private ToolStripTextBox toolStipConLabel;
+        private ToolStripTextBox toolStripConLabel;
         private ToolStripMenuItem classToolStripMenuItem;
         private ToolStripComboBox classListComboBox;
+        private ListBox listBox1;
     }
 }
