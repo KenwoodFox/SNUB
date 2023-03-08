@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Xml.Serialization;
+using System.Net.Http.Json;
 
 namespace SNUBclientFinalProject
 {
@@ -29,11 +30,12 @@ namespace SNUBclientFinalProject
         {
             classListComboBox.Items.Clear();
 
+            
             List <string> classList = new List <string>(serverConnect.getValues("/cmds/classes"));
+            
             for (int i = 0; i < classList.Count; i++)
             {
-
-
+  
                 classListComboBox.Items.Add(classList[i]);
             }
 
