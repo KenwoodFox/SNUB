@@ -1,3 +1,12 @@
+// CS-114 SNHU
+
+// SNUB Client Program
+
+using System.Net;
+using System.Collections.Generic;
+
+using Newtonsoft.Json;
+
 namespace SNUBclientFinalProject
 {
     internal static class Program

@@ -4,4 +4,6 @@
 
 # C#
 .vs/
+bin/
 obj/
+Resources/~WRL0005.tmp
