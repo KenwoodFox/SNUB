@@ -1,0 +1,67 @@
+name: Client CI/CD
+
+on:
+  push:
+    branches:
+      - "main"
+    tags:
+      - "*"
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET Core SDK 6.0.x
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+
+      - name: Install dependencies
+        run: cd Client && dotnet restore
+
+      - name: Build
+        run: cd Client && dotnet build --configuration Release --no-restore
+
+      - name: Test
+        run: cd Client && dotnet test --no-restore --verbosity normal
+
+      - name: Publish
+        run: cd Client && dotnet publish
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ClientApp
+          path: Client/bin/Release/net6.0-windows/*
+
+  publish:
+    # Only run on tags
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    name: Publish
+    needs: [build]
+
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: ClientApp
+          path: ClientApp/
+
+      - uses: papeloto/action-zip@v1
+        with:
+          files: ClientApp/
+          dest: ClientApp.zip
+
+      - name: Upload Dashboard to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: "*.zip"
+          tag: ${{ github.ref }}
+          overwrite: true
+          prerelease: true
+          body: "CS-114, Automated with github ci/cd."
+          file_glob: true
