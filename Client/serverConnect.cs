@@ -41,14 +41,10 @@ namespace SNUBclientFinalProject
 
             JArray arr = JArray.Parse(json);
 
-           
+            List<string> req = arr.ToObject<List<string>>();
 
-            string temp = arr.ToString();
-            List<string> temp2 = new List<string>(temp.Split(","));
-            
-            
-            
-            return temp2;
+
+            return req;
         }
     }
 }
