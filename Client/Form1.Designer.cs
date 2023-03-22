@@ -34,6 +34,9 @@
             this.classToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.classListComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.txtAuthor = new System.Windows.Forms.TextBox();
+            this.txtNote = new System.Windows.Forms.TextBox();
+            this.buttonAdd = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,16 +84,43 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(370, 149);
+            this.listBox1.Location = new System.Drawing.Point(0, 30);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 94);
+            this.listBox1.Size = new System.Drawing.Size(399, 364);
             this.listBox1.TabIndex = 3;
+            // 
+            // txtAuthor
+            // 
+            this.txtAuthor.Location = new System.Drawing.Point(462, 42);
+            this.txtAuthor.Name = "txtAuthor";
+            this.txtAuthor.Size = new System.Drawing.Size(100, 23);
+            this.txtAuthor.TabIndex = 4;
+            // 
+            // txtNote
+            // 
+            this.txtNote.Location = new System.Drawing.Point(462, 85);
+            this.txtNote.Name = "txtNote";
+            this.txtNote.Size = new System.Drawing.Size(100, 23);
+            this.txtNote.TabIndex = 5;
+            // 
+            // buttonAdd
+            // 
+            this.buttonAdd.Location = new System.Drawing.Point(473, 127);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(75, 23);
+            this.buttonAdd.TabIndex = 6;
+            this.buttonAdd.Text = "Add";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonAdd);
+            this.Controls.Add(this.txtNote);
+            this.Controls.Add(this.txtAuthor);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -110,5 +140,8 @@
         private ToolStripMenuItem classToolStripMenuItem;
         private ToolStripComboBox classListComboBox;
         private ListBox listBox1;
+        private TextBox txtAuthor;
+        private TextBox txtNote;
+        private Button buttonAdd;
     }
 }
