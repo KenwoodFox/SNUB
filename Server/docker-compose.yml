@@ -1,28 +1,36 @@
 version: '3.7'
 
 services:
-  # db:
-  #   image: postgres:10.5
-  #   restart: always
-  #   environment:
-  #     - POSTGRES_USER=postgres
-  #     - POSTGRES_PASSWORD=postgres
-  #     - POSTGRES_DB=snub_db
-  #   logging:
-  #     options:
-  #       max-size: 10m
-  #       max-file: "3"
-  #   ports:
-  #     - '5438:5432'
-  #   tmpfs: /var/lib/postgresql/data
+  database:
+    image: postgres:10.5
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=snub_db
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - '5438:5432'
+    tmpfs: /var/lib/postgresql/data
+    networks:
+      - dbnet
 
   snub:
     image: snub:$TAG
     build:
       context: .
       dockerfile: Dockerfile
-    # links:
-    #   - "db:database"
+    networks:
+      - dbnet
+    depends_on:
+      - database
     ports:
       - '8080:8080'
-    restart: "no"
+    restart: unless-stopped
+
+networks:
+  dbnet:
+    driver: bridge
