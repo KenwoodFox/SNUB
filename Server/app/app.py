@@ -77,7 +77,7 @@ def publish():
     logging.info(f"{class_arg}, {note_arg}, {author_arg}")
     db.recordNote(class_arg, author_arg, note_arg)
 
-    return jsonify(["Published!"])
+    return jsonify([["Published!"]])
 
 
 if __name__ == "__main__":
