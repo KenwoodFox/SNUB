@@ -33,7 +33,7 @@ def version():
 # All possible classes
 @app.route("/cmds/classes", methods=["GET"])
 def classes():
-    return jsonify(["CS-114", "CS-113", "CUL-155"])
+    return jsonify(db.getClasses())
 
 
 # Class data

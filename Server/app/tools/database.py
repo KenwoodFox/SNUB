@@ -58,3 +58,15 @@ class database:
                 ret.append(item)
 
         return ret
+
+    def getClasses(self):
+        """
+        Returns a list of all currently cataloged classes
+        """
+
+        classes = []
+        with self.conn.cursor() as cur:
+            cur.execute("SELECT DISTINCT class FROM notes")
+            for record in cur:
+                classes.append(record[0])
+        return classes
