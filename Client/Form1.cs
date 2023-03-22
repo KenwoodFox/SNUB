@@ -60,6 +60,7 @@ namespace SNUBclientFinalProject
            
                 classNotes(classListComboBox.Text);
             
+            
         }
 
 
@@ -69,12 +70,16 @@ namespace SNUBclientFinalProject
             listBox1.Items.Clear();
             List<List<string>> classNotes = new List<List<string>>(serverConnect.getClassNotes($"/cmds/class_notes?class={classSelection}"));
             
+
             for(int i = 0; i < classNotes.Count; i++)
             {
 
-                listBox1.Items.Add(classNotes[i][0] + "-" + classNotes[i][3]) ;
+                listBox1.Items.Add(classNotes[i][0] + "-" + classNotes[i][2]) ;
                 
             }
+
+            
+          
             
             
         }
@@ -91,9 +96,31 @@ namespace SNUBclientFinalProject
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            uploadNotes(txtNote.Text, txtAuthor.Text, classListComboBox.Text);
-            txtNote.Clear();
-            txtNote.Focus();
+            if (txtNote.Text != "" && txtAuthor.Text != "")
+            {
+                uploadNotes(txtNote.Text, txtAuthor.Text, classListComboBox.Text);
+                txtNote.Clear();
+                txtNote.Focus();
+                classNotes(classListComboBox.Text);
+            }
+            else { MessageBox.Show("Cannot Upload Null Value"); }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<List<string>> classNotes = new List<List<string>>(serverConnect.getClassNotes($"/cmds/class_notes?class={classListComboBox.Text}"));
+
+
+            
+
+              txtDisplayNote.Text =classNotes[listBox1.SelectedIndex][3];
+
+            
 
         }
     }
