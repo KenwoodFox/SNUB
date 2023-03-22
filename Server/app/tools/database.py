@@ -1,5 +1,8 @@
 import time
+import pytz
 import psycopg
+
+from datetime import datetime
 
 
 class database:
@@ -62,7 +65,12 @@ class database:
             )
 
             for item in cur:
-                ret.append(item)
+                ret.append(list(item))
+
+        # Convert dates
+        for item in ret:
+            tme = datetime.fromtimestamp(item[0], tz=pytz.timezone("US/Eastern"))
+            item[0] = tme.strftime("%m/%d/%Y, %-I:%M:%S %p")
 
         return ret
 
