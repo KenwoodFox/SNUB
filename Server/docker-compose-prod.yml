@@ -7,7 +7,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=admin_bot_db
+      - POSTGRES_DB=snub_db
     logging:
       options:
         max-size: 10m
@@ -20,7 +20,7 @@ services:
       - dbnet
 
   snub:
-    image: ghcr.io/kenwoodfox/snub:feat-initalversion
+    image: ghcr.io/kenwoodfox/snub:feat-publish
     networks:
       - dbnet
     depends_on:
@@ -28,6 +28,19 @@ services:
     ports:
       - '8080:8080'
     restart: "always"
+
+  watchtower:
+    image: containrrr/watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_LABEL_ENABLE=true
+      - WATCHTOWER_INCLUDE_RESTARTING=true
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 
 networks:
   dbnet:
