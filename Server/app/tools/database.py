@@ -1,3 +1,4 @@
+import time
 import psycopg
 
 
@@ -19,7 +20,7 @@ class database:
                 """
                 CREATE TABLE IF NOT EXISTS notes (
                     timestamp bigint,
-                    title text,
+                    class text,
                     author text,
                     note text)
                 """
@@ -28,5 +29,32 @@ class database:
             # Commit the db changes!
             self.conn.commit()
 
-    def getNotes(rclass: str) -> str:
-        pass
+    def recordNote(self, _class: str, _author: str, _note: str):
+        with self.conn.cursor() as cur:
+            cur.execute(
+                "INSERT INTO notes (timestamp, class, author, note) VALUES (%s, %s, %s, %s)",
+                (
+                    int(time.time()),
+                    _class,
+                    _author,
+                    _note,
+                ),
+            )
+
+            self.conn.commit()
+
+    def getNotes(self, _class: str, lines: int = 10) -> str:
+        ret = []
+        with self.conn.cursor() as cur:
+            cur.execute(
+                "SELECT * FROM notes WHERE class = %s ORDER BY timestamp DESC LIMIT %s",
+                (
+                    _class,
+                    lines,
+                ),
+            )
+
+            for item in cur:
+                ret.append(item)
+
+        return ret

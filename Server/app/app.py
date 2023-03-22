@@ -42,14 +42,8 @@ def class_notes():
     args = request.args
     class_sel = args.get("class")
 
-    data = {
-        "CS-114": ["Example 1", "Example 2", "Example 3"],
-        "CS-113": ["Example 9", "Example 420", "Example 69"],
-        "CUL-155": ["Why are you taking this class?"],
-    }
-
     try:
-        return jsonify(data[str(class_sel)])
+        return jsonify(db.getNotes(str(class_sel)))
     except KeyError:
         return jsonify([f"No Data for class: {class_sel}"])
 
@@ -66,6 +60,7 @@ def publish():
     author_arg = args.get("author")
 
     logging.info(f"{class_arg}, {note_arg}, {author_arg}")
+    db.recordNote(class_arg, author_arg, note_arg)
 
     return jsonify(["Published!"])
 
