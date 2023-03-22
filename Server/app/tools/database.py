@@ -43,6 +43,13 @@ class database:
 
             self.conn.commit()
 
+    def delClass(self, _class: str):
+        with self.conn.cursor() as cur:
+            query = "DELETE FROM notes WHERE class = %s"
+            cur.execute(query, (_class,))
+
+            self.conn.commit()
+
     def getNotes(self, _class: str, lines: int = 10) -> str:
         ret = []
         with self.conn.cursor() as cur:
