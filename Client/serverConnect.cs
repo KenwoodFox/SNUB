@@ -25,7 +25,7 @@ namespace SNUBclientFinalProject
 
             JObject arr = JObject.Parse(json);
 
-            return (string)arr[key];
+            return (string)arr[key]!;
         }
 
         public static List<string> getValues(string path)
@@ -42,7 +42,7 @@ namespace SNUBclientFinalProject
             JArray arr = JArray.Parse(json);
 
 
-            List<string>req = arr.ToObject<List<string>>();
+            List<string>req = arr.ToObject<List<string>>()!;
 
 
             return req;
@@ -62,10 +62,13 @@ namespace SNUBclientFinalProject
             JArray arr = JArray.Parse(json);
 
 
-            List<List<string>> req = arr.ToObject<List<List<string>>>();
+            List<List<string>> req = arr.ToObject<List<List<string>>>()!;
 
 
             return req;
         }
     }
 }
+
+/*
+ */
