@@ -41,7 +41,28 @@ namespace SNUBclientFinalProject
 
             JArray arr = JArray.Parse(json);
 
-            List<string> req = arr.ToObject<List<string>>();
+
+            List<string>req = arr.ToObject<List<string>>();
+
+
+            return req;
+        }
+
+        public static List<List<string>> getClassNotes(string path)
+        {
+            // Method to retreive any specific json key from the server
+            string url = $"https://snub.kitsunehosting.net{path}";
+
+            string json;
+            using (WebClient wc = new WebClient())
+            {
+                json = wc.DownloadString(url);
+            }
+
+            JArray arr = JArray.Parse(json);
+
+
+            List<List<string>> req = arr.ToObject<List<List<string>>>();
 
 
             return req;

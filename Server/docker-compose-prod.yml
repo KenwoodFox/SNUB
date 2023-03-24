@@ -1,34 +1,47 @@
 version: '3.7'
 
 services:
-  # database:
-  #   image: postgres:10.5
-  #   restart: always
-  #   environment:
-  #     - POSTGRES_USER=postgres
-  #     - POSTGRES_PASSWORD=postgres
-  #     - POSTGRES_DB=admin_bot_db
-  #   logging:
-  #     options:
-  #       max-size: 10m
-  #       max-file: "3"
-  #   ports:
-  #     - '5438:5432'
-  #   volumes:
-  #     - ./postgres-data:/var/lib/postgresql/data
-  #   networks:
-  #     - dbnet
+  database:
+    image: postgres:10.5
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=snub_db
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - '5438:5432'
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    networks:
+      - dbnet
 
-  admin_bot:
-    image: ghcr.io/kenwoodfox/snub:feat-initalversion
-    # networks:
-    #   - dbnet
-    # depends_on:
-    #   - database
+  snub:
+    image: ghcr.io/kenwoodfox/snub:feat-publish
+    networks:
+      - dbnet
+    depends_on:
+      - database
     ports:
       - '8080:8080'
     restart: "always"
 
-# networks:
-#   dbnet:
-#     driver: bridge
+  watchtower:
+    image: containrrr/watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_LABEL_ENABLE=true
+      - WATCHTOWER_INCLUDE_RESTARTING=true
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+networks:
+  dbnet:
+    driver: bridge
