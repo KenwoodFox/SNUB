@@ -2,6 +2,11 @@
 ~$*.docx
 *.pdf
 
+# Dev
+.pio
+.vscode
+_build
+
 # C#
 .vs/
 Backup
