@@ -6,5 +6,4 @@ SNUB Docs
    :glob:
 
    introduction/getting-started
-   service/service
-   service/assembly
+   usage/usage
