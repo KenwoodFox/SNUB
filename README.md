@@ -1,5 +1,6 @@
 [![Server](https://github.com/KenwoodFox/SNUB/actions/workflows/server_workflow.yml/badge.svg)](https://github.com/KenwoodFox/SNUB/actions/workflows/server_workflow.yml)
 [![Client](https://github.com/KenwoodFox/SNUB/actions/workflows/client_workflow.yml/badge.svg)](https://github.com/KenwoodFox/SNUB/actions/workflows/client_workflow.yml)
+[![Documentation Status](https://readthedocs.org/projects/snub-snhu/badge/?version=latest)](https://snub-snhu.readthedocs.io/en/latest/?badge=latest)
 
 # SNUB
 SNhU dataBase. A CS-114 project for SNHU.
