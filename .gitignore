@@ -1,6 +1,12 @@
 # Docs
 ~$*.docx
 *.pdf
+*.docx#
+
+# Dev
+.pio
+.vscode
+_build
 
 # C#
 .vs/
@@ -9,3 +15,12 @@ UpgradeLog.htm
 bin/
 obj/
 Resources/~WRL0005.tmp
+
+# latex
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
