@@ -6,7 +6,7 @@ Introduction
 
 .. image:: images/Sample_of_Features.PNG
   :width: 80%
-  :alt: Initial Render
+  :alt: Overview Image
 
 Welcome to SNUB! The SNHU User Database.
 
