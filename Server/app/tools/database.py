@@ -55,22 +55,23 @@ class database:
 
     def getNotes(self, _class: str, lines: int = 10) -> str:
         ret = []
-        with self.conn.cursor() as cur:
-            cur.execute(
-                "SELECT * FROM notes WHERE class = %s ORDER BY timestamp DESC LIMIT %s",
-                (
-                    _class,
-                    lines,
-                ),
-            )
+        if _class != "":
+            with self.conn.cursor() as cur:
+                cur.execute(
+                    "SELECT * FROM notes WHERE class = %s ORDER BY timestamp DESC LIMIT %s",
+                    (
+                        _class,
+                        lines,
+                    ),
+                )
 
-            for item in cur:
-                ret.append(list(item))
+                for item in cur:
+                    ret.append(list(item))
 
-        # Convert dates
-        for item in ret:
-            tme = datetime.fromtimestamp(item[0], tz=pytz.timezone("US/Eastern"))
-            item[0] = tme.strftime("%m/%d/%Y, %-I:%M:%S %p")
+            # Convert dates
+            for item in ret:
+                tme = datetime.fromtimestamp(item[0], tz=pytz.timezone("US/Eastern"))
+                item[0] = tme.strftime("%m/%d/%Y, %-I:%M:%S %p")
 
         return ret
 
@@ -83,5 +84,6 @@ class database:
         with self.conn.cursor() as cur:
             cur.execute("SELECT DISTINCT class FROM notes")
             for record in cur:
-                classes.append(record[0])
+                if str(record[0]) != "":
+                    classes.append(record[0])
         return classes
