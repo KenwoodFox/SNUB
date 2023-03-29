@@ -38,7 +38,7 @@
                         Height="60"
                         Foreground="White"
                         FontSize="16"
-                        Style="{StaticResource ClassesButtonTheme}"/>
+                        Style="{StaticResource ClassesButtonTheme}" Checked="RadioButton_Checked"/>
                 
 
                 <RadioButton Content="Classes"
