@@ -60,7 +60,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: "*.exe"
+          file: "ClientApp/*.exe"
           tag: ${{ github.ref }}
           overwrite: true
           prerelease: true
