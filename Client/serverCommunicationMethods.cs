@@ -10,9 +10,12 @@ using System.Diagnostics;
 
 namespace SNUBclientFinalProject
 {
-    internal class serverConnect
+    internal class serverCommunicationMethods
     {
-        public static string getValue(string path, string key)
+        //Method used to retrieve the server version.
+        //Method used to verify connection to the server.
+
+        public static string getServerVersion(string path, string key)
         {
             // Method to retreive any specific json key from the server
             string url = $"https://snub.kitsunehosting.net{path}";
@@ -27,8 +30,9 @@ namespace SNUBclientFinalProject
 
             return (string)arr[key];
         }
-
-        public static List<string> getValues(string path)
+        
+        //Method used to retrive list of classes form the server.
+        public static List<string> getClassList(string path)
         {
             // Method to retreive any specific json key from the server
             string url = $"https://snub.kitsunehosting.net{path}";
@@ -48,6 +52,8 @@ namespace SNUBclientFinalProject
             return req;
         }
 
+        //Method used to retrieve list of lists from server
+        //of the format: {[Date, Author, Note], [Date, Author, Note]...}
         public static List<List<string>> getClassNotes(string path)
         {
             // Method to retreive any specific json key from the server
