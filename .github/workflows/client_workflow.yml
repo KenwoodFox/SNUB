@@ -38,7 +38,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: ClientApp
-          path: Client/bin/Release/net6.0-windows\win-x64\publish\*.exe
+          path: Client/bin/Release/net6.0-windows/win-x64/publish/*.exe
 
   publish:
     # Only run on tags
