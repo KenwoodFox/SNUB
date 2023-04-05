@@ -35,6 +35,9 @@ jobs:
       - name: Publish
         run: cd Client && dotnet publish
 
+      - name: Tree
+        run: tree Client/bin/Release
+
       - uses: actions/upload-artifact@v2
         with:
           name: ClientApp
