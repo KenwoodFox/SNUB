@@ -56,16 +56,11 @@ jobs:
           name: ClientApp
           path: ClientApp/
 
-      - uses: papeloto/action-zip@v1
-        with:
-          files: ClientApp/
-          dest: ClientApp.zip
-
-      - name: Upload Dashboard to release
+      - name: Upload release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: "*.zip"
+          file: "*.exe"
           tag: ${{ github.ref }}
           overwrite: true
           prerelease: true
