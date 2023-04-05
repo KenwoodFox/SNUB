@@ -16,15 +16,68 @@
 
 \frame{\titlepage} % Draw the title page
 
-% A frame
 \begin{frame}
     \frametitle{Features}
 
-    \begin{block}{\centering C\# Was Used to Develop the Following Features:}
-        \centering User Connection, Class Selection, Note Selection, Add Note
+    
+    \begin{block}{\centering C\# Was Used to Develop the Following Testing Environment:}
+    \end{block}
+    % Some columns
+    \begin{columns}
+        \begin{column}{0.3\textwidth}
+            \begin{block}{Users are Directed to:}
+            \begin{itemize}
+                \item Connect to the server
+                \item Select a class from a drop-down menu
+                \item Select a note from the list box.
+            \end{itemize}
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \includegraphics[width=8cm]{Sample_of_Features}
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Features}
+
+    \begin{block}{\centering Connect to Server Feature}
+        \centering \includegraphics [width=9cm] {connect}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Features}
+
+    \begin{block}{\centering Select a Class Feature}
+        \centering Users are Directed to select a class from the drop-down menu. This populates the class notes list box with the date and author of each note corresponding to the selected class.
     \end{block}
 
-    \centering \includegraphics[height=6cm]{Sample_of_Features.PNG}
+    \centering \includegraphics [width=10cm] {pounce}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Features}
+
+    \begin{block}{\centering Populate Selected Note Feature}
+        \centering Users may select an item from the list box to populate the selected note text box.
+    \end{block}
+
+%     \centering \includegraphics [width=10cm] {Select Class Note.png}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Features}
+
+    \begin{block}{\centering Add Note Feature}
+        \centering Users may add a note to the database by adding text to both the author and add note text boxes. If the user attempts to add a note containing an empty string they are prompted to try again.
+    \end{block}
+
+%     \centering \includegraphics [width=10cm] {Add Note.png}
 \end{frame}
 
 \begin{frame}
@@ -38,7 +91,7 @@
             \end{block}
         \end{column}
         \begin{column}{0.48\textwidth}
-            \includegraphics[width=7cm]{Sample_of_Features}
+            \includegraphics[width=6cm]{WpfBluePrint.PNG}
         \end{column}
     \end{columns}
 
