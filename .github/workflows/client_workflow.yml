@@ -35,10 +35,13 @@ jobs:
       - name: Publish
         run: cd Client && dotnet publish
 
+      - name: Tree
+        run: tree Client/bin/Release
+
       - uses: actions/upload-artifact@v2
         with:
           name: ClientApp
-          path: Client/bin/Release/net6.0-windows/*
+          path: Client/bin/Release/net6.0-windows/win-x64/*.exe
 
   publish:
     # Only run on tags
@@ -53,16 +56,11 @@ jobs:
           name: ClientApp
           path: ClientApp/
 
-      - uses: papeloto/action-zip@v1
-        with:
-          files: ClientApp/
-          dest: ClientApp.zip
-
-      - name: Upload Dashboard to release
+      - name: Upload release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: "*.zip"
+          file: "*.exe"
           tag: ${{ github.ref }}
           overwrite: true
           prerelease: true
