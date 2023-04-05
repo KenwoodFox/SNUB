@@ -28,15 +28,15 @@ namespace SNUBclientFinalProject
         */
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (serverConnect.getValue("/cmds/version", "version") != null)
+            if (serverCommunicationMethods.getServerVersion("/cmds/version", "version") != null)
             {
                 //Show connection status and version to user and change color of connection button.
                 connectToolStripMenuItem.Text = "Connected";
                 connectToolStripMenuItem.BackColor = Color.Green;
-                toolStripConLabel.Text = $"Version: {serverConnect.getValue("/cmds/version", "version")}";
+                toolStripConLabel.Text = $"Version: {serverCommunicationMethods.getServerVersion("/cmds/version", "version")}";
 
                 //initiate class list and class list combo box
-                classList = new List<string>(serverConnect.getValues("/cmds/classes"));
+                classList = new List<string>(serverCommunicationMethods.getClassList("/cmds/classes"));
                 classListComboBox.Items.Clear();
 
                 for (int i = 0; i < classList.Count; i++)
@@ -55,73 +55,79 @@ namespace SNUBclientFinalProject
             
         }
 
+        /*
+        Displays selectable class note items in the listbox in the format
+        Data - Author
+         */
         private void classToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
-                classNotes(classListComboBox.Text);
-            
-            
-        }
-
-
-        //Pass the selected class from combo list to the class notes server and populate list box
-        private void classNotes(string classSelection)
-        {
             listBox1.Items.Clear();
-            List<List<string>> classNotes = new List<List<string>>(serverConnect.getClassNotes($"/cmds/class_notes?class={classSelection}"));
-            
-
-            for(int i = 0; i < classNotes.Count; i++)
+            uploadAndDisplayNoteMethods retrieve = new uploadAndDisplayNoteMethods();
+            List<List<string>> contentList = retrieve.retrieveNotes(classListComboBox.Text);
+            for (int i = 0; i < contentList.Count; i++)
             {
 
-                listBox1.Items.Add(classNotes[i][0] + "-" + classNotes[i][2]) ;
-                
+                listBox1.Items.Add(contentList[i][0] + "-" + contentList[i][2]);
+
             }
 
-            
-          
-            
-            
         }
 
-        private void uploadNotes(string note, string author, string classSelection)
-        {
-            
-            string path = $"/cmds/publish?author={author}&class={classSelection}&note=\"{note}\"";
-
-            List<List<string>> classNotes = new List<List<string>>(serverConnect.getClassNotes(path));
-            
-
-        }
-
+        /*
+        Initiating "add button" uploads text from the author text box and note text box to the server.
+        First checks that the user has added content to each text box.
+        if either textbox contains null values the user is notified of the error.
+         */
+        
         private void buttonAdd_Click(object sender, EventArgs e)
         {
+            uploadAndDisplayNoteMethods upload = new uploadAndDisplayNoteMethods();
             if (txtNote.Text != "" && txtAuthor.Text != "")
             {
-                uploadNotes(txtNote.Text, txtAuthor.Text, classListComboBox.Text);
+                upload.uploadNotes(txtNote.Text, txtAuthor.Text, classListComboBox.Text);
                 txtNote.Clear();
                 txtNote.Focus();
-                classNotes(classListComboBox.Text);
+                uploadAndDisplayNoteMethods retrieve = new uploadAndDisplayNoteMethods();
+                List<List<string>> contentList = retrieve.retrieveNotes(classListComboBox.Text);
+                
             }
             else { MessageBox.Show("Cannot Upload Null Value"); }
         }
-
-        private void label1_Click(object sender, EventArgs e)
+        
+        /*
+        Populate display note text box with selected index of list box
+         */
+        public void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            List<List<string>> classNotes = new List<List<string>>(serverCommunicationMethods.getClassNotes($"/cmds/class_notes?class={classListComboBox.Text}"));
+            txtDisplayNote.Text =classNotes[listBox1.SelectedIndex][3];
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        // Exit Program
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<List<string>> classNotes = new List<List<string>>(serverConnect.getClassNotes($"/cmds/class_notes?class={classListComboBox.Text}"));
+            this.Close();
+        }
 
+        //Clear User Entered Note
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtNote.Clear();
+            txtNote.Focus();
+        }
 
-            
+        //Refresh List box
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            uploadAndDisplayNoteMethods retrieve = new uploadAndDisplayNoteMethods();
+            List<List<string>> contentList = retrieve.retrieveNotes(classListComboBox.Text);
+            for (int i = 0; i < contentList.Count; i++)
+            {
 
-              txtDisplayNote.Text =classNotes[listBox1.SelectedIndex][3];
+                listBox1.Items.Add(contentList[i][0] + "-" + contentList[i][2]);
 
-            
-
+            }
         }
     }
 }
