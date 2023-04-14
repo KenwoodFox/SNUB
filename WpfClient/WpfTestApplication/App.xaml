@@ -1,0 +1,22 @@
+﻿<Application x:Class="WpfTestApplication.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WpfTestApplication"
+             xmlns:viewModel="clr-namespace:WpfTestApplication.MVVM.ViewModel"
+             xmlns:view="clr-namespace:WpfTestApplication.MVVM.View"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source=" Theme/ClassesButtonTheme.xaml"/>
+                <ResourceDictionary Source=" Theme/ConnectButtonTheme.xaml"/>
+                <ResourceDictionary Source=" Theme/TextBoxTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView/>
+            </DataTemplate>
+            
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
