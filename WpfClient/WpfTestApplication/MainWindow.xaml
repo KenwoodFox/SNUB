@@ -15,7 +15,8 @@
     <Window.DataContext>
         <viewModel:HomeViewModel/>
     </Window.DataContext>
-    
+
+
     <Border Background="#272537"
             CornerRadius = "24">
         <Grid>

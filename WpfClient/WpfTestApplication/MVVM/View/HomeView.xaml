@@ -16,10 +16,14 @@
         <StackPanel Orientation="Horizontal">
             <Border Width="400"
                     Height="350"
+                    Margin="0,0,0,0"
+                    CornerRadius="10"
                     Background="#d9d9d9">
                     
 
             </Border>
         </StackPanel>
     </StackPanel>
+    
+    
 </UserControl>
